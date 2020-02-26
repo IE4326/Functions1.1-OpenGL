@@ -13,7 +13,7 @@ void Keyboard(unsigned char key, int x, int y){
 		case 'c': center^=1; Display(); return;
 		case 'n': navigation^=1; Display(); return;
 		case 'f': function^=1; Display(); return;
-		case 's': SetPreset(key-48); return;
+		case 's': SetPreset(key); return;
 		case 'h': ShowHelp(); return;
 		case 'p': SwitchPrecision(); break;
 		case '0':
@@ -25,7 +25,7 @@ void Keyboard(unsigned char key, int x, int y){
 		case '6':
 		case '7':
 		case '8':
-		case '9':
+		case '9': SetPreset(key-48); break;
 		default: break;
 	}
 }
@@ -62,7 +62,7 @@ void SetPreset(int i){
 	static int first;
 	if (sequence){
 		sequence = false;
-		int pr = i == 67 ? first : (first*10)+i;
+		int pr = i == 115 ? first : (first*10)+i;
 		if (pr > 17 || pr < 0) return;
 		preset = pr;
 		std::cout << "PRESET IS " << pr << "!\n";
