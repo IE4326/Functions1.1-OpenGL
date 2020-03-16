@@ -36,18 +36,18 @@ void Zoom(GLFWwindow* window, double xOffset, double yOffset)
 	double x, y;
 	glfwGetCursorPos(window, &x, &y);
 
-	// Чтобы осуществить зум, сначала запоминаем в какой клетке находится курсор
+	// Р§С‚РѕР±С‹ РѕСЃСѓС‰РµСЃС‚РІРёС‚СЊ Р·СѓРј, СЃРЅР°С‡Р°Р»Р° Р·Р°РїРѕРјРёРЅР°РµРј РІ РєР°РєРѕР№ РєР»РµС‚РєРµ РЅР°С…РѕРґРёС‚СЃСЏ РєСѓСЂСЃРѕСЂ
 	double xCell, yCell;
 	double HalfWindowSize = WindowSize / 2;
 	xCell = (double)(x - HalfWindowSize) / HalfWindowSize;
 	yCell = (double)(y - HalfWindowSize) / HalfWindowSize;
 
-	// Отсчитываем количество клеток до курсора от начала координат
+	// РћС‚СЃС‡РёС‚С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє РґРѕ РєСѓСЂСЃРѕСЂР° РѕС‚ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
 	double xCellCount, yCellCount;
 	xCellCount = (xCell - yAxisPos) / GridSize;
 	yCellCount = (-yCell - xAxisPos) / GridSize;
 
-	// Увеличиваем/уменьшаем размер сетки и подгоняем положение осей по запомненому состоянию
+	// РЈРІРµР»РёС‡РёРІР°РµРј/СѓРјРµРЅСЊС€Р°РµРј СЂР°Р·РјРµСЂ СЃРµС‚РєРё Рё РїРѕРґРіРѕРЅСЏРµРј РїРѕР»РѕР¶РµРЅРёРµ РѕСЃРµР№ РїРѕ Р·Р°РїРѕРјРЅРµРЅРѕРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ
 	if (yOffset > 0 && GridSize < 40) 
 		GridSize *= 1.5; else
 	if (yOffset < 0 && GridSize > 0.01) 
@@ -60,12 +60,12 @@ void Zoom(GLFWwindow* window, double xOffset, double yOffset)
 
 void MouseMove(GLFWwindow* window, double x, double y)
 {
-	// Для плавного премещения храним значение последнего положения курсора
+	// Р”Р»СЏ РїР»Р°РІРЅРѕРіРѕ РїСЂРµРјРµС‰РµРЅРёСЏ С…СЂР°РЅРёРј Р·РЅР°С‡РµРЅРёРµ РїРѕСЃР»РµРґРЅРµРіРѕ РїРѕР»РѕР¶РµРЅРёСЏ РєСѓСЂСЃРѕСЂР°
 	static double xLast, yLast;
 
 	if (FLAGS[MOVING])
 	{
-		// 2.0 - размер всего экрана. Соответственно, высчитываем количество клеток, которые помещаются на экран
+		// 2.0 - СЂР°Р·РјРµСЂ РІСЃРµРіРѕ СЌРєСЂР°РЅР°. РЎРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ, РІС‹СЃС‡РёС‚С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє, РєРѕС‚РѕСЂС‹Рµ РїРѕРјРµС‰Р°СЋС‚СЃСЏ РЅР° СЌРєСЂР°РЅ
 		double CellCount = 2.0 / GridSize;
 		double CellSize = WindowSize / CellCount;
 		yAxisPos += GridSize * ( (x - xLast) / CellSize);
@@ -78,7 +78,7 @@ void MouseMove(GLFWwindow* window, double x, double y)
 
 void PointInfo(int x, int y)
 {
-	double xFloat = (double)x / (WindowSize / 2) - 1; // Чтобы вывести информацию о заданной точке сначала получаем её положение на экране от -1.0 до 1.0
+	double xFloat = (double)x / (WindowSize / 2) - 1; // Р§С‚РѕР±С‹ РІС‹РІРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р·Р°РґР°РЅРЅРѕР№ С‚РѕС‡РєРµ СЃРЅР°С‡Р°Р»Р° РїРѕР»СѓС‡Р°РµРј РµС‘ РїРѕР»РѕР¶РµРЅРёРµ РЅР° СЌРєСЂР°РЅРµ РѕС‚ -1.0 РґРѕ 1.0
 	double Cell = -(yAxisPos - xFloat) / GridSize;
 	FLAGS[POINT] = true;
 	xPoint = yAxisPos + Cell * GridSize;
@@ -144,7 +144,7 @@ void Keyboard(GLFWwindow* window, int key, int scancode, int action, int mods)
 
 void SetPreset(int i)
 {
-	static bool SequenceFlag = false; // Если ожидается вторая цифра, или команда переключения
+	static bool SequenceFlag = false; // Р•СЃР»Рё РѕР¶РёРґР°РµС‚СЃСЏ РІС‚РѕСЂР°СЏ С†РёС„СЂР°, РёР»Рё РєРѕРјР°РЅРґР° РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ
 	static int First;
 	if (SequenceFlag) {
 		SequenceFlag = false;
