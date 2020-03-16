@@ -28,7 +28,7 @@ void DrawAxis()
 
 void DrawGrid()
 {
-	int c = (2.0 + abs(xAxisPos) + abs(yAxisPos)) / GridSize; // Количество клеток, которые помещаются на экран
+	int c = (2.0 + abs(xAxisPos) + abs(yAxisPos)) / GridSize; // РљРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє, РєРѕС‚РѕСЂС‹Рµ РїРѕРјРµС‰Р°СЋС‚СЃСЏ РЅР° СЌРєСЂР°РЅ
 	double opacity = 0.15 + GridSize > 0.6 ? 0.6 : 0.15 + GridSize;
 	for (int x = c; x > 0; x--) {
 		glColor3f(opacity, opacity, opacity);
@@ -144,7 +144,7 @@ void DrawFunction()
 void DrawDigit(double x, double y, double size, int n)
 {
 	double m = 0.01 * size;
-	// Массивы, которые хранят положение элементов по принципу электронного циферблата
+	// РњР°СЃСЃРёРІС‹, РєРѕС‚РѕСЂС‹Рµ С…СЂР°РЅСЏС‚ РїРѕР»РѕР¶РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РїРѕ РїСЂРёРЅС†РёРїСѓ СЌР»РµРєС‚СЂРѕРЅРЅРѕРіРѕ С†РёС„РµСЂР±Р»Р°С‚Р°
 	double xpoint[7] = { x, x, x + m, x, x, x + m, x },
 		sxpoint[7] = { x + m, x, x + m, x + m, x, x + m, x + m },
 		ypoint[7] = { y, y, y, y - m, y - m, y - m, y - m - m },
@@ -161,7 +161,7 @@ void DrawDigit(double x, double y, double size, int n)
 	}
 }
 
-// Рисует стрелку в произвольном месте, заданного размера, под заданным углом
+// Р РёСЃСѓРµС‚ СЃС‚СЂРµР»РєСѓ РІ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРј РјРµСЃС‚Рµ, Р·Р°РґР°РЅРЅРѕРіРѕ СЂР°Р·РјРµСЂР°, РїРѕРґ Р·Р°РґР°РЅРЅС‹Рј СѓРіР»РѕРј
 void DrawArrow(double x, double y, double size, double angle)
 {
 	double len = 0.03 * size,
@@ -183,7 +183,7 @@ void DrawArrow(double x, double y, double size, double angle)
 	glEnd();
 }
 
-// Последовательно вызывает DrawDigit() для вывода числа
+// РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ DrawDigit() РґР»СЏ РІС‹РІРѕРґР° С‡РёСЃР»Р°
 void DrawNumber(double x, double y, double size, int n)
 {
 	int razr = 0;
