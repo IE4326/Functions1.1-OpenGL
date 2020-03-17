@@ -3,7 +3,7 @@
 ![Alt text](screenshot.png?raw=true "Screenshot")
 
 Для компиляции необходимо передать линкеру библиотеку opengl32.lib, а также библиотеки из папки lib и путь для include  
-У меня откомпилировалось через консоль VS командой
+У меня откомпилировалось через консоль VS командой  
 cl /MD /I "путьдопапки\include" main.cpp Render.cpp io.cpp opengl32.lib gdi32.lib kernel32.lib user32.lib shell32.lib путьдопапки\lib\glfw3.lib путьдопапки\lib\glew32.lib
 
 Данное приложение позволяет изучать графики функций, отображая их по заданным формулам.
